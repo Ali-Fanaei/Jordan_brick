@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کارخانه آجر - محصولات لوکس ساختمانی</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Vazirmatn for Persian) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js for Image Slider -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #111827;
+            /* Dark background for a luxury feel */
+            color: #F3F4F6;
+            scroll-behavior: smooth;
+        }
+
+        /* Shine effect for the logo */
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 80%);
+            animation: shine-animation 2s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes shine-animation {
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* Fade in animation for the main content */
+        .content-fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Image slider buttons */
+        .slider-button {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border-radius: 9999px;
+            padding: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Masonry gallery effect */
+        .masonry-gallery {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-gallery {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-gallery {
+                column-count: 3;
+            }
+        }
+
+        .masonry-gallery .break-inside {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900">
+
+    <!-- Splash Screen with Shining Logo -->
+    <div id="splash-screen"
+        class="fixed inset-0 bg-gray-900 flex justify-center items-center z-50 transition-opacity duration-1000 ease-out">
+        <div class="shine">
+            <!-- Replace this with your SVG or IMG logo -->
+            <!-- <svg class="w-48 h-48 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 14a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                </path>
+            </svg> -->
+            <img src="./logo.png" alt="Logo" class="w-48 h-48 text-amber-500">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden">
+
+        <!-- Hero Section -->
+        <header class="h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
+            style="background-image: url(./88076_banner.jpg);">
+            <!-- Overlay for better text readability -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="relative text-center text-white z-10 px-4">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider leading-tight">آجر جردن</h1>
+                <p class="mt-4 text-xl md:text-2xl font-light text-gray-300">تولید کننده آجرهای نسوز</p>
+                <a href="#products"
+                    class="mt-8 inline-block bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-amber-400 transition duration-300">مشاهده
+                    محصولات</a>
+            </div>
+        </header>
+
+        <!-- Products Section -->
+        <section id="products" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white">محصولات ما</h2>
+                    <p class="text-lg text-gray-400 mt-4">کیفیت، زیبایی و دوام را با آجرهای ما تجربه کنید.</p>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Product Card 1 -->
+                    <div x-data="{
+                        images: [
+                            './nasoz_shamoti/1.jpg',
+                        ],
+                        currentImage: 0
+                    }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="relative h-64">
+                            <!-- Image Display -->
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <!-- Slider Controls -->
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز شاموتی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۳۵ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۵ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۵۰ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۱۵,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div x-data="{
+                        images: [
+                            './nasoz_englisi/1.jpg',
+                            
+                        ],
+                        currentImage: 0
+                    }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز انگلیسی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۳۵ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۲ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۶۰ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: از ۱۰,۰۰۰ تومان تا ۵۳,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div x-data="{
+                        images: [
+                            './nasozـLـshamoti/1.jpg'
+                        ],
+                        currentImage: 0
+                    }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز ال شاموتی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۵۵ × ۱۰۰ × ۲۰۰ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div x-data="{
+                        images: [
+                            './nasoz_L_ghermez/1.jpg',
+                            './nasoz_L_ghermez/2.jpg'
+                        ],
+                        currentImage: 0
+                        }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform  duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز ال قرمز</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۵۵ × ۱۰۰ × ۲۰۰ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div x-data="{
+                        images: [
+                            './nasoz_ghahvei/2.jpg',
+                            './nasoz_ghahvei/1.jpg'
+                        ],
+                        currentImage: 0
+                        }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform  duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز قهوه ای</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۳۵ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div x-data="{
+                        images: [
+                            './nasozـtosi/1.jpg',
+                            './nasozـtosi/2.jpg'
+                        ],
+                        currentImage: 0
+                        }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform  duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز طوسی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۷۰ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 7 -->
+                    <div x-data="{
+                        images: [
+                            './nasozـmeshki/1.jpg'
+                        ],
+                        currentImage: 0
+                    }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز مشکی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۳۵ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 8 -->
+                    <div x-data="{
+                        images: [
+                            './nasozـsefidـsadafi/1.jpg',
+                            './nasozـsefidـsadafi/2.jpg'
+                        ],
+                        currentImage: 0
+                        }"
+                        class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform  duration-300">
+                        <div class="relative h-64">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentImage === index" :src="image" alt="تصویر محصول"
+                                    class="w-full h-full object-cover transition-opacity duration-500" x-transition>
+                            </template>
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button @click="currentImage = (currentImage - 1 + images.length) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                                <button @click="currentImage = (currentImage + 1) % images.length"
+                                    class="slider-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-500 mb-3">آجر نسوز سفید صدفی</h3>
+                            <div class="text-gray-300 space-y-2">
+                                <p><span class="font-semibold">ابعاد:</span> ۳۵ × ۳۱۰ × ۲۵ سانتی‌متر</p>
+                                <p><span class="font-semibold">وزن:</span> ۲.۸ کیلوگرم</p>
+                                <p><span class="font-semibold">تعداد در متر مربع:</span> ۴۵ عدد</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 text-left">
+                                <span class="text-xl font-bold text-white">قیمت: ۲۰,۰۰۰ تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Gallery Section -->
+        <section id="projects" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white">پروژه‌های اجرا شده</h2>
+                    <p class="text-lg text-gray-400 mt-4">نمونه‌ای از زیبایی و استحکام محصولات ما در دنیای واقعی.</p>
+                </div>
+
+                <!-- Masonry Gallery -->
+                <div class="masonry-gallery">
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/1.jpg" alt="Project 1"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/2.jpg" alt="Project 2"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/3.jpg" alt="Project 3"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/4.jpg" alt="Project 4"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/5.jpg" alt="Project 5"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="break-inside rounded-lg overflow-hidden">
+                        <img src="./album/6.jpg" alt="Project 6"
+                            class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="about" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white">درباره ما</h2>
+                    <p class="text-lg text-gray-400 mt-4">ترکیبی از سنت و نوآوری در تولید آجر</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+                    <!-- Image Column -->
+                    <div class="lg:w-5/12">
+                        <img src="https://placehold.co/800x600/5a4d46/ffffff?text=تصویر+کارخانه" alt="درباره ما"
+                            class="rounded-lg shadow-xl w-full h-auto object-cover">
+                    </div>
+
+                    <!-- Text Column -->
+                    <div class="lg:w-7/12 text-center lg:text-right">
+                        <h3 class="text-3xl font-bold text-amber-500 mb-6">تولید کننده بیش از ۲۲۰ مدل آجر</h3>
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            کارخانه تولیدی آجرنمای نسوز جردن، فعالیت خود را در زمینه تولید آجر از سال 1380 در اصفهان
+                            آغاز کرد.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            با پیشرفت روز افزون و توسعه کارخانه و بیش از 15 سال تجربه و نوآوری در زمینه تولید انواع آجر
+                            در حال حاضر با استفاده از پیشرفته ترین تجهیزات و امکانات و مرغوب ترین مواد اولیه موجود از
+                            معادن انحصاری با زیربنای 20/000 متر مربع و ظرفیت تولید سالانه 250/000 تن انواع آجر نمای نسوز
+                            دارای بروزترین خط تولیدآجر نسوز در ایران و خاورمیانه می باشیم.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            کارخانه آجرنمای نسوز جردن با بهره گیری از بهترین و مرغوبترین مواد اولیه در تولید دارای
+                            آنالیز کیفیتی درجه 1 صادراتی و استاندارد ملی می باشد که در دهه اخیر پیشرفت روز افزونی در
+                            صادرا ت به کشورهای مجاور و حوزه خلیج فارس را داشته ایم. هم اکنون با تولید بیش از 220 مدل از
+                            انواع آجرنمای نسوز در ابعاد و رنگهای متنوع در خدمت شما سروران گرامی می باشیم.
+                        </p>
+                        <a href="#contact"
+                            class="mt-6 inline-block border border-amber-500 text-amber-500 font-bold py-3 px-8 rounded-lg text-lg hover:bg-amber-500 hover:text-gray-900 transition duration-300">ارتباط
+                            با ما</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <footer id="contact" class="bg-gray-900 py-16">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">تماس با ما</h2>
+                <p class="text-lg text-gray-400 mb-10">برای مشاوره و سفارش، با ما در ارتباط باشید.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 text-lg">
+                    <a href="tel:+989123456789" class="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span>۰۹۰۳-۰۰۶-۸۵۶۲</span>
+                    </a>
+                    <a href="mailto:info@yourbrand.com"
+                        class="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Info@ajor-jordan.com</span>
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>آدرس: اصفهان، شهرک صنعتی دولت آباد</span>
+                    </div>
+                </div>
+                <div class="mt-12 border-t border-gray-700 pt-6">
+                    <p class="text-gray-500">&copy; ۱۴۰۴ - تمامی حقوق برای [ آجر جردن ] محفوظ است.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // JavaScript to handle the splash screen and content fade-in
+        window.addEventListener('load', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+
+            // Hide splash screen and show main content after animation
+            setTimeout(() => {
+                splashScreen.style.opacity = '0';
+                // Wait for the splash screen to fade out before removing it
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    mainContent.classList.add('content-fade-in');
+                }, 1000); // This should match the transition duration
+            }, 3000); // Total time splash screen is visible (includes shine animation)
+        });
+    </script>
+
+</body>
+
+</html>
